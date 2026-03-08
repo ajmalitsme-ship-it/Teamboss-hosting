@@ -58,32 +58,69 @@ LOG_CHANNEL_ID = -1003559364122
 OWNER_ID   = 8525952693
 ADMIN_IDS  = [8525952693]
 VPS_HOST_IP = os.environ.get("VPS_HOST_IP", "YOUR_VPS_IP")
+# ============================================================================
+# BOT INITIALIZATION
+# ============================================================================
 
-bot            = telebot.TeleBot(BOT_TOKEN, parse_mode='HTML')
-db             = Database(MONGODB_URI)              # ✅ KEEP THIS LINE
-scanner        = SecurityScanner()
-docker_manager = DockerManager(db)                   # ✅ KEEP THIS LINE
-vps_manager    = VpsManager(db, host_ip=VPS_HOST_IP)
-rate_limiter   = RateLimiter(db)
-logger         = BotLogger(bot, LOG_CHANNEL_ID)
+# Initialize bot
+bot = telebot.TeleBot(BOT_TOKEN, parse_mode='HTML')
 
-# ✅ REPLACE THE 3 PROBLEM LINES WITH THIS:
+# ============================================================================
+# DATABASE INITIALIZATION - ✅ CORRECT (KEEP THIS)
+# ============================================================================
+
 try:
-    docker_manager = DockerManager(db)               # ✅ FIXED - Using DockerManager
+    db = Database(MONGODB_URI)  # ✅ This is correct - uses Database class
+    logger.info("✅ Database connected successfully")
+except Exception as e:
+    logger.error(f"❌ Database connection failed: {e}")
+    db = None
+
+# ============================================================================
+# OTHER MANAGERS INITIALIZATION
+# ============================================================================
+
+scanner = SecurityScanner()
+rate_limiter = RateLimiter(db) if db else None
+logger_bot = BotLogger(bot, LOG_CHANNEL_ID)
+
+# ============================================================================
+# DOCKER MANAGER INITIALIZATION
+# ============================================================================
+
+try:
+    docker_manager = DockerManager(db)
     if docker_manager and docker_manager.client:
-        print("✅ Docker initialized successfully")
-        logger.info("✅ Docker initialized successfully")
+        logger.info("✅ Docker initialized successfully - Full functionality available")
     else:
-        print("⚠️ Docker not available - Running in limited mode")
         logger.warning("⚠️ Docker not available - Running in limited mode")
 except Exception as e:
-    print(f"❌ Failed to initialize DockerManager: {e}")
     logger.error(f"❌ Failed to initialize DockerManager: {e}")
     docker_manager = None
 
-bot_info     = bot.get_me()
-BOT_USERNAME = bot_info.username
-BOT_NAME     = bot_info.first_name
+# ============================================================================
+# VPS MANAGER INITIALIZATION
+# ============================================================================
+
+try:
+    vps_manager = VpsManager(db, host_ip=VPS_HOST_IP)
+    logger.info("✅ VPS Manager initialized")
+except Exception as e:
+    logger.error(f"❌ Failed to initialize VPS Manager: {e}")
+    vps_manager = None
+
+# ============================================================================
+# BOT INFO
+# ============================================================================
+
+try:
+    bot_info = bot.get_me()
+    BOT_USERNAME = bot_info.username
+    BOT_NAME = bot_info.first_name
+except Exception as e:
+    logger.error(f"❌ Failed to get bot info: {e}")
+    BOT_USERNAME = "ScriptHostBot"
+    BOT_NAME = "Script Host Bot"
 
 # ... rest of your code ...
 
