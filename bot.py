@@ -71,18 +71,25 @@ vps_manager    = VpsManager(db, host_ip=VPS_HOST_IP)
 rate_limiter   = RateLimiter(db)
 logger         = BotLogger(bot, LOG_CHANNEL_ID)
 
-# ✅ REPLACE THE 3 PROBLEM LINES WITH THIS:
+# ============================================================================
+# DOCKER MANAGER INITIALIZATION - FIXED
+# ============================================================================
+
 try:
-    docker_manager = DockerManager(db)               # ✅ FIXED - Using DockerManager
+    docker_manager = DockerManager(db)
     if docker_manager and docker_manager.client:
-        print("✅ Docker initialized successfully")
-        logger.info("✅ Docker initialized successfully")
+        print("✅ Docker initialized successfully - Full functionality available")
+        if logger_bot:
+            logger_bot.log_action("system", "docker_initialized", {"status": "success"})
     else:
         print("⚠️ Docker not available - Running in limited mode")
-        logger.warning("⚠️ Docker not available - Running in limited mode")
+        if logger_bot:
+            logger_bot.log_action("system", "docker_status", {"status": "disabled"})
+        
 except Exception as e:
     print(f"❌ Failed to initialize DockerManager: {e}")
-    logger.error(f"❌ Failed to initialize DockerManager: {e}")
+    if logger_bot:
+        logger_bot.log_action("system", "docker_error", {"error": str(e)})
     docker_manager = None
 
 bot_info     = bot.get_me()
