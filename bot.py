@@ -2770,39 +2770,84 @@ def echo_all(message):
 
 # ════════════════════════════════════════════════════════════════════
 def main():
-    __import__('builtins').print(__import__('base64').b64decode('CuKVlOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVlwrilZEgICAgICAgICAgICAgICAgICAgICAgICBUZWFtRGV2ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIOKVkQrilZEgICAgICAgICAgICAgaHR0cHM6Ly9HaXRIdWIuY29tL2p1c3Rmb3J0ZXN0aW5nbm90aGliZ2hlcmUvICAgIOKVkQrilZEgICAgICAgICAgICAgICAgICAgICAgVGVhbURldl9Ib3N0Qm90ICAgICAgICAgICAgICAgICAgICAgICAgIOKVkQrilaDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilaMK4pWRICBQcm9qZWN0IElkICAgICAtPiAyOCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICDilZEK4pWRICBQcm9qZWN0IE5hbWUgICAtPiBTY3JpcHQgSG9zdCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICDilZEK4pWRICBQcm9qZWN0IEFnZSAgICAtPiA0TW9udGgrIChVcGRhdGVkIE9uIDA3LzAzLzIwMjYpICAgICAgICAgICDilZEK4pWRICBJZGVhIEJ5ICAgICAgICAtPiBATVJfQVJNQU5fMDggICAgICAgICAgICAgICAgICAgICAgICAgICAgICDilZEK4pWRICBEZXYgICAgICAgICAgICAtPiBATVJfQVJNQU5fMDggICAgICAgICAgICAgICAgICAgICAgICAgICAgICDilZEK4pWRICBQb3dlcmVkIEJ5ICAgICAtPiBAVGVhbV9YX09nICggT24gVGVsZWdyYW0gKSAgICAgICAgICAgICAgICDilZEK4pWRICBVcGRhdGVzICAgICAgICAtPiBAQ3JpbWVab25lX1VwZGF0ZSAoIE9uIFRlbGVncmFtICkgICAgICAgICDilZEK4pWg4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWjCuKVkSAgU2V0dXAgR3VpZGVzICAgLT4gUmVhZCA+IFJFQURNRS5tZCBPciBWUFNfUkVBRE1FLm1kICAgICAgICAg4pWRCuKVkSAgVGhpcyBTY3JpcHQgUGFydCBPZiBodHRwczovL1RlYW1fWF9PZyBUZWFtICAgICAgICAgICAgICAgICAg4pWRCuKVkSAgQ29weXJpZ2h0IDIwMjYgVGVhbURldiB8IEBUZWFtX1hfT2cgICAgICAgICAgICAgICAgICAgICAgICDilZEK4pWg4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWjCuKVkSAg4oCiIFNvbWUgUXVpY2sgSGVscCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICDilZEK4pWRICAtIFVzZSBJbiBWUFMsIE90aGVyIFdheSBUaGlzIEJvdCBXb24ndCBXb3JrLiAgICAgICAgICAgICAgICDilZEK4pWRICAtIE5lZWQgSGVscD8gQ29udGFjdCBVcyBJbiBAVGVhbV9YX09nJ3MgR3JvdXAgICAgICAgICAgICAgICDilZEK4pWg4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWjCuKVkSAgQ29tcGF0aWJsZSBJbiBCb3RBcGkgOS41IEZ1bGx5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg4pWRCuKVkSAgQnVpbGQgRm9yIEJvdEFwaSA5LjQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg4pWRCuKVkSAgV2UnbGwgS2VlcCBVcGRhdGUgSWYgV2UgR290IDUwKyBTdGFycyBJbiBPbmUgTW9udGggICAgICAgICAg4pWRCuKVmuKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVnQo=').decode('utf-8'))
+    # Print banner
+    banner = """
+╔═════════════════════════════════════════════════════════════╗
+║                        TeamDev                               ║
+║             https://GitHub.com/justfortestingnothibghere/    ║
+║                      TeamDev_HostBot                         ║
+╠══════════════════════════════════════════════════════════════╣
+║  Project Id     -> 28                                        ║
+║  Project Name   -> Script Host                               ║
+║  Project Age    -> 4Month+ (Updated On 07/03/2026)           ║
+║  Idea By        -> @MR_ARMAN_08                              ║
+║  Dev            -> @MR_ARMAN_08                              ║
+║  Powered By     -> @Team_X_Og ( On Telegram )                ║
+║  Updates        -> @CrimeZone_Update ( On Telegram )         ║
+╠══════════════════════════════════════════════════════════════╣
+║  Setup Guides   -> Read > README.md Or VPS_README.md         ║
+║  This Script Part Of https://Team_X_Og Team                  ║
+║  Copyright 2026 TeamDev | @Team_X_Og                        ║
+╠══════════════════════════════════════════════════════════════╣
+║  • Some Quick Help                                           ║
+║  - Use In VPS, Other Way This Bot Won't Work.                ║
+║  - Need Help? Contact Us In @Team_X_Og's Group               ║
+╠══════════════════════════════════════════════════════════════╣
+║  Compatible In BotApi 9.5 Fully                              ║
+║  Build For BotApi 9.4                                        ║
+║  We'll Keep Update If We Got 50+ Stars In One Month          ║
+╚══════════════════════════════════════════════════════════════╝
+    """
+    print(banner)
     print(f"Bot Started: @{BOT_USERNAME}")
     print(f"Bot Name: {BOT_NAME}")
     print(f"Owner ID: {OWNER_ID}")
+    print(f"Docker Available: {docker_manager is not None and docker_manager.client is not None}")
+    print(f"Database Available: {db is not None}")
+    print(f"VPS Manager Available: {vps_manager is not None}")
     print("GitHub OAuth server: http://0.0.0.0:5000")
+    print("=" * 50)
 
-    # Start background threads - FIXED
-if docker_manager and docker_manager.client:
+    # Start background threads
+    if docker_manager and docker_manager.client:
+        try:
+            # Check which method exists in DockerManager
+            if hasattr(docker_manager, 'auto_monitor'):
+                threading.Thread(target=docker_manager.auto_monitor, daemon=True).start()
+                print("✅ Auto-monitor thread started")
+            elif hasattr(docker_manager, '_start_auto_monitor'):
+                threading.Thread(target=docker_manager._start_auto_monitor, daemon=True).start()
+                print("✅ Auto-monitor thread started")
+            else:
+                print("ℹ️ No auto-monitor method found in DockerManager")
+        except Exception as e:
+            print(f"❌ Failed to start auto-monitor: {e}")
+    else:
+        print("ℹ️ Auto-monitor skipped (Docker not available)")
+
+    # Start premium expiry checker
     try:
-        # For VPS deployment, use _start_auto_monitor instead
-        if hasattr(docker_manager, '_start_auto_monitor'):
-            threading.Thread(target=docker_manager._start_auto_monitor, daemon=True).start()
-            print("✅ Auto-monitor thread started")
-        else:
-            print("ℹ️ No auto-monitor method found")
+        if 'premium_expiry_checker' in dir() and callable(premium_expiry_checker):
+            threading.Thread(target=premium_expiry_checker, daemon=True).start()
+            print("✅ Premium expiry checker started")
     except Exception as e:
-        print(f"❌ Failed to start auto-monitor: {e}")
-else:
-    print("ℹ️ Auto-monitor skipped (Docker not available)")
+        print(f"❌ Failed to start premium expiry checker: {e}")
 
-# Start premium expiry checker
-try:
-    if 'premium_expiry_checker' in dir() and callable(premium_expiry_checker):
-        threading.Thread(target=premium_expiry_checker, daemon=True).start()
-        print("✅ Premium expiry checker started")
-except Exception as e:
-    print(f"❌ Failed to start premium expiry checker: {e}")
+    # Start bot - FIXED SECTION WITH ERROR HANDLING
+    try:
+        print("🤖 Bot started polling...")
+        bot.infinity_polling(timeout=60, long_polling_timeout=60, skip_pending=True)
+    except Exception as e:
+        if "409" in str(e):
+            print("⚠️ Conflict detected! Another bot instance is running.")
+            print("🔴 Please stop any other instances.")
+            print("⏳ Waiting 30 seconds and retrying...")
+            time.sleep(30)
+            main()  # Restart
+        else:
+            print(f"❌ Bot crashed: {e}")
+            time.sleep(5)
+            main()  # Restart
 
-# Start bot
-try:
-    print("🤖 Bot started polling...")
-    bot.infinity_polling(timeout=60, long_polling_timeout=60)
-except Exception as e:
-    print(f"❌ Bot crashed: {e}")
-    time.sleep(5)
-    main()  # Restart
+if __name__ == '__main__':
+    main()
