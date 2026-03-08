@@ -2776,10 +2776,33 @@ def main():
     print(f"Owner ID: {OWNER_ID}")
     print("GitHub OAuth server: http://0.0.0.0:5000")
 
-    threading.Thread(target=docker_manager.auto_monitor, daemon=True).start()
-    threading.Thread(target=premium_expiry_checker, daemon=True).start()
+    # Start background threads - FIXED
+if docker_manager and docker_manager.client:
+    try:
+        # For VPS deployment, use _start_auto_monitor instead
+        if hasattr(docker_manager, '_start_auto_monitor'):
+            threading.Thread(target=docker_manager._start_auto_monitor, daemon=True).start()
+            print("✅ Auto-monitor thread started")
+        else:
+            print("ℹ️ No auto-monitor method found")
+    except Exception as e:
+        print(f"❌ Failed to start auto-monitor: {e}")
+else:
+    print("ℹ️ Auto-monitor skipped (Docker not available)")
 
+# Start premium expiry checker
+try:
+    if 'premium_expiry_checker' in dir() and callable(premium_expiry_checker):
+        threading.Thread(target=premium_expiry_checker, daemon=True).start()
+        print("✅ Premium expiry checker started")
+except Exception as e:
+    print(f"❌ Failed to start premium expiry checker: {e}")
+
+# Start bot
+try:
+    print("🤖 Bot started polling...")
     bot.infinity_polling(timeout=60, long_polling_timeout=60)
-
-if __name__ == '__main__':
-    main()
+except Exception as e:
+    print(f"❌ Bot crashed: {e}")
+    time.sleep(5)
+    main()  # Restart
