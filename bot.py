@@ -62,7 +62,10 @@ docker_manager = DockerManager(db)
 vps_manager    = VpsManager(db, host_ip=VPS_HOST_IP)
 rate_limiter   = RateLimiter(db)
 logger         = BotLogger(bot, LOG_CHANNEL_ID)
-docker_client  = docker_sdk.from_env()
+# Line 60-65 in your bot.py
+db = MongoDB()
+docker_sdk = __import__('docker')
+docker_client = docker_sdk.from_env()  # LINE 65 - THIS FAILS ON RENDER
 
 bot_info     = bot.get_me()
 BOT_USERNAME = bot_info.username
