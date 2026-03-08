@@ -50,6 +50,8 @@ import html
 from database import MongoDB  # or whatever your database file is named
 import docker as docker_sdk
 
+# ... previous code ...
+
 BOT_TOKEN  = "8712144911:AAHwnnvEN87CZKt0tHoRBtps8Q6gwuepnp0"
 MONGODB_URI = "mongodb+srv://Bosshub:JMaff0WvazwNxKky@cluster0.l0xcoc1.mongodb.net/?appName=Cluster0"
 LOG_CHANNEL_ID = -1003559364122
@@ -58,20 +60,32 @@ ADMIN_IDS  = [8525952693]
 VPS_HOST_IP = os.environ.get("VPS_HOST_IP", "YOUR_VPS_IP")
 
 bot            = telebot.TeleBot(BOT_TOKEN, parse_mode='HTML')
-db             = Database(MONGODB_URI)
+db             = Database(MONGODB_URI)              # ✅ KEEP THIS LINE
 scanner        = SecurityScanner()
-docker_manager = DockerManager(db)
+docker_manager = DockerManager(db)                   # ✅ KEEP THIS LINE
 vps_manager    = VpsManager(db, host_ip=VPS_HOST_IP)
 rate_limiter   = RateLimiter(db)
 logger         = BotLogger(bot, LOG_CHANNEL_ID)
-# Line 60-65 in your bot.py
-db = MongoDB()
-docker_sdk = __import__('docker')
-docker_client = docker_sdk.from_env()  # LINE 65 - THIS FAILS ON RENDER
+
+# ✅ REPLACE THE 3 PROBLEM LINES WITH THIS:
+try:
+    docker_manager = DockerManager(db)               # ✅ FIXED - Using DockerManager
+    if docker_manager and docker_manager.client:
+        print("✅ Docker initialized successfully")
+        logger.info("✅ Docker initialized successfully")
+    else:
+        print("⚠️ Docker not available - Running in limited mode")
+        logger.warning("⚠️ Docker not available - Running in limited mode")
+except Exception as e:
+    print(f"❌ Failed to initialize DockerManager: {e}")
+    logger.error(f"❌ Failed to initialize DockerManager: {e}")
+    docker_manager = None
 
 bot_info     = bot.get_me()
 BOT_USERNAME = bot_info.username
 BOT_NAME     = bot_info.first_name
+
+# ... rest of your code ...
 
 PREMIUM_EMOJI = "⭐"
 
