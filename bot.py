@@ -46,6 +46,8 @@ import psutil
 import shutil
 import requests
 import html
+# Add this with your other imports
+from database import MongoDB  # or whatever your database file is named
 import docker as docker_sdk
 
 BOT_TOKEN  = "8712144911:AAHwnnvEN87CZKt0tHoRBtps8Q6gwuepnp0"
