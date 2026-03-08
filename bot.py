@@ -56,7 +56,7 @@ import docker as docker_sdk
 # Initialize bot
 # ... previous code ...
 
-BOT_TOKEN  = "8712144911:AAHwnnvEN87CZKt0tHoRBtps8Q6gwuepnp0"
+BOT_TOKEN  = "8712144911:AAHpzQ7WlJgof1akhPHrahUgPtfqoAvaa24"
 MONGODB_URI = "mongodb+srv://Bosshub:JMaff0WvazwNxKky@cluster0.l0xcoc1.mongodb.net/?appName=Cluster0"
 LOG_CHANNEL_ID = -1003559364122
 OWNER_ID   = 8525952693
