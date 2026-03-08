@@ -72,6 +72,14 @@ rate_limiter   = RateLimiter(db)
 logger         = BotLogger(bot, LOG_CHANNEL_ID)
 
 # ============================================================================
+# OTHER MANAGERS INITIALIZATION
+# ============================================================================
+
+scanner = SecurityScanner()
+rate_limiter = RateLimiter(db) if db else None
+logger = BotLogger(bot, LOG_CHANNEL_ID)  # ✅ This is 'logger', not 'logger_bot'
+
+# ============================================================================
 # DOCKER MANAGER INITIALIZATION - FIXED
 # ============================================================================
 
@@ -79,23 +87,40 @@ try:
     docker_manager = DockerManager(db)
     if docker_manager and docker_manager.client:
         print("✅ Docker initialized successfully - Full functionality available")
-        if logger_bot:
-            logger_bot.log_action("system", "docker_initialized", {"status": "success"})
+        # Optional: use logger if you want
+        # logger.log_action("system", "docker_initialized", {"status": "success"})
     else:
         print("⚠️ Docker not available - Running in limited mode")
-        if logger_bot:
-            logger_bot.log_action("system", "docker_status", {"status": "disabled"})
+        # logger.log_action("system", "docker_status", {"status": "disabled"})
         
 except Exception as e:
     print(f"❌ Failed to initialize DockerManager: {e}")
-    if logger_bot:
-        logger_bot.log_action("system", "docker_error", {"error": str(e)})
+    # logger.log_action("system", "docker_error", {"error": str(e)})
     docker_manager = None
 
-bot_info     = bot.get_me()
-BOT_USERNAME = bot_info.username
-BOT_NAME     = bot_info.first_name
+# ============================================================================
+# VPS MANAGER INITIALIZATION
+# ============================================================================
 
+try:
+    vps_manager = VpsManager(db, host_ip=VPS_HOST_IP)
+    print("✅ VPS Manager initialized")
+except Exception as e:
+    print(f"❌ Failed to initialize VPS Manager: {e}")
+    vps_manager = None
+
+# ============================================================================
+# BOT INFO
+# ============================================================================
+
+try:
+    bot_info = bot.get_me()
+    BOT_USERNAME = bot_info.username
+    BOT_NAME = bot_info.first_name
+except Exception as e:
+    print(f"❌ Failed to get bot info: {e}")
+    BOT_USERNAME = "ScriptHostBot"
+    BOT_NAME = "Script Host Bot"
 # ... rest of your code ...
 
 PREMIUM_EMOJI = "⭐"
