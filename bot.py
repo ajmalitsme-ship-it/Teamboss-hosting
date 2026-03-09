@@ -233,7 +233,7 @@ def start_command(message):
             expiry_text = f"\n{check} Pʀᴇᴍɪᴜᴍ Exᴘɪʀᴇs <code>{expiry.strftime('%Y-%m-%d')}</code> ({days_left}d left)"
 
     welcome_text = f"""
-{welcome} <b>𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𝒕𝒐 {BOT_NAME} {verified_2}</b>
+{welcome} <b>𝗪ᴇʟᴄᴏᴍ {BOT_NAME} {verified_2}</b>
 
 {hello} 𝙷𝙴𝙻𝙻𝙾 <b>{message.from_user.first_name}</b> {verified}
 
@@ -270,11 +270,11 @@ def start_command(message):
 {check} <b>Dockerfile</b>
 {check} <b>requirements.txt</b>
 
-Vɪᴅᴇᴏ Hᴇʟᴘ = https://t.me/TEAM_x_OG/108421
+ᴀɴʏ ʜᴇʟᴩ ᴄᴏᴍᴇ ʜᴇʀᴇ = 
 
-{support} <b>Sᴜᴘᴘᴏʀᴛ</b> @TEAM_X_OG {verified}
-{updates} <b>Uᴘᴅᴀᴛᴇs</b> @CrimeZone_Update {verified}
-{dev} <b>Dᴇᴠᴇʟᴏᴘᴇʀ</b> @MR_ARMAN_08 {verified}
+{support} <b>Sᴜᴘᴘᴏʀᴛ</b> @Beast_sopport_group {verified}
+{updates} <b>Uᴘᴅᴀᴛᴇs</b> @Bosshubots {verified}
+{dev} <b>Dᴇᴠᴇʟᴏᴘᴇʀ</b> @bosshubsupportbot {verified}
 """
 
     markup = types.InlineKeyboardMarkup()
