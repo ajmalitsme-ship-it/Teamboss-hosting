@@ -60,7 +60,7 @@ BOT_TOKEN  = "8712144911:AAHpzQ7WlJgof1akhPHrahUgPtfqoAvaa24"
 MONGODB_URI = "mongodb+srv://Bosshub:JMaff0WvazwNxKky@cluster0.l0xcoc1.mongodb.net/?appName=Cluster0"
 LOG_CHANNEL_ID = -1003559364122
 OWNER_ID   = 8525952693
-ADMIN_IDS  = [8525952693]
+ADMIN_IDS  = [8055522383]
 VPS_HOST_IP = os.environ.get("VPS_HOST_IP", "YOUR_VPS_IP")
 
 bot            = telebot.TeleBot(BOT_TOKEN, parse_mode='HTML')
@@ -288,11 +288,11 @@ def start_command(message):
     )
     markup.row(
         types.InlineKeyboardButton("H𝙴𝙻𝙿", callback_data="help", icon_custom_emoji_id="5258301131615912800", style="primary"),
-        types.InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ", url="https://t.me/TEAM_X_OG", icon_custom_emoji_id="5258301131615912800", style="primary")
+        types.InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ", url="https://t.me/Beast_sopport_group", icon_custom_emoji_id="5258301131615912800", style="primary")
     )
 
     try:
-        bot.send_video(message.chat.id, START_VIDEO, caption=welcome_text, reply_markup=markup, parse_mode="HTML")
+        bot.send_message(message.chat.id, START_VIDEO, caption=welcome_text, reply_markup=markup, parse_mode="HTML")
     except Exception as _e:
         try:
             import re as _re
