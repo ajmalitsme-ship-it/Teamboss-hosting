@@ -69,36 +69,34 @@ class DockerManager:
         self.docker_disabled = os.environ.get('DISABLE_DOCKER', '').lower() == 'true' or self.is_render
         
         # Initialize Docker client if available and not disabled
-        self.client = None
-        if DOCKER_AVAILABLE and not self.docker_disabled:
-            try:
-                self.client = docker.from_env()
-                # Test connection
-                self.client.ping()
-                logger.info("✅ Docker client initialized successfully")
-except DockerException as e:
-    # Don't show error on Render - it's expected
-    if self.is_render:
-        logger.info("ℹ️ Docker not available on Render - this is expected")
-    else:
-        logger.error(f"❌ Failed to initialize Docker client: {e}")
-    self.client = None
-    self.docker_disabled = True
-except Exception as e:
-    # Don't show error on Render - it's expected
-    if self.is_render:
-        logger.info("ℹ️ Docker not available on Render - this is expected")
-    else:
-        logger.error(f"❌ Unexpected error initializing Docker: {e}")
-    self.client = None
-    self.docker_disabled = True
+self.client = None
+if DOCKER_AVAILABLE and not self.docker_disabled:
+    try:
+        self.client = docker.from_env()
+        # Test connection
+        self.client.ping()
+        logger.info("✅ Docker client initialized successfully")
+    except DockerException as e:
+        if self.is_render:
+            logger.info("ℹ️ Docker not available on Render - this is expected")
         else:
-            if not DOCKER_AVAILABLE:
-                logger.warning("⚠️ Docker Python package not available")
-            if self.is_render:
-                logger.info("🏭 Running on Render - Docker functionality disabled")
-            if self.docker_disabled:
-                logger.info("🚫 Docker explicitly disabled via environment variable")
+            logger.error(f"❌ Failed to initialize Docker client: {e}")
+        self.client = None
+        self.docker_disabled = True
+    except Exception as e:
+        if self.is_render:
+            logger.info("ℹ️ Docker not available on Render - this is expected")
+        else:
+            logger.error(f"❌ Unexpected error initializing Docker: {e}")
+        self.client = None
+        self.docker_disabled = True
+else:
+    if not DOCKER_AVAILABLE:
+        logger.warning("⚠️ Docker Python package not available")
+    if self.is_render:
+        logger.info("🏭 Running on Render - Docker functionality disabled")
+    if self.docker_disabled:
+        logger.info("🚫 Docker explicitly disabled via environment variable")
         
         # Start auto-monitor if Docker is available
         if self.client:
