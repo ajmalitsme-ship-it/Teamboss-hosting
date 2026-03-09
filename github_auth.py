@@ -29,10 +29,10 @@ import threading
 import requests
 from flask import Flask, request, redirect, jsonify
 
-GITHUB_CLIENT_ID     = os.environ.get("GITHUB_CLIENT_ID", "GITHUB_CLIENT_ID SEE README.md")
-GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET", "GITHUB_CLIENT_SECRET SEE README.md")
-GITHUB_REDIRECT_URI  = "https://auth.teamdev.sbs/callback"
-AUTH_BASE_URL        = "https://auth.teamdev.sbs"
+GITHUB_CLIENT_ID     = os.environ.get("GITHUB_CLIENT_ID", "Ov23lilhKqZpHNERgdjU")
+GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET", "547a130164699b07d0a3ee41d75665d2f9cf8d27")
+GITHUB_REDIRECT_URI  = "https://hosting-bot-gmoo.onrender.com/callback"
+AUTH_BASE_URL        = "https://hosting-bot-gmoo.onrender.com"
 
 _pending_states: dict[str, int] = {}
 _db   = None
@@ -66,7 +66,7 @@ BASE_STYLE = """
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title} — TeamDev Host</title>
+<title>{title} — 𝗗𝗘𝗩 𝗛𝗘𝗟𝗟 𝗛𝗢𝗦𝗧𝗜𝗡𝗚</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -424,7 +424,7 @@ def success_page(github_username, github_avatar=None):
 
     content = f"""
   <div class="card">
-    <div class="status-icon success">✅</div>
+    <div class="status-icon success">👍</div>
 
     <div style="text-align:center; margin-bottom:4px;">
       <span class="tag">● AUTHENTICATED</span>
@@ -492,15 +492,15 @@ def error_page(reason="Invalid or expired request."):
       </div>
     </div>
 
-    <div class="btn-group">
-      <a href="https://t.me/TEAM_X_OG" target="_blank" class="btn btn-telegram">
+    <div class=divider">or</div>
+      <a href="https://t.me/BEAST_1k" target="_blank" class="btn btn-telegram">
         {TG_SVG}
-        Get Help — @TEAM_X_OG
+        Contact dev 2 — @BEAST_1k
       </a>
       <div class="divider">or</div>
-      <a href="https://t.me/MR_ARMAN_08" target="_blank" class="btn btn-ghost">
+      <a href="https://t.me/funnytamilan" target="_blank" class="btn btn-ghost">
         {TG_SVG}
-        Contact Dev — @MR_ARMAN_08
+        Contact Dev — @funnytamilan
       </a>
     </div>
 
