@@ -76,14 +76,22 @@ class DockerManager:
                 # Test connection
                 self.client.ping()
                 logger.info("✅ Docker client initialized successfully")
-            except DockerException as e:
-                logger.error(f"❌ Failed to initialize Docker client: {e}")
-                self.client = None
-                self.docker_disabled = True
-            except Exception as e:
-                logger.error(f"❌ Unexpected error initializing Docker: {e}")
-                self.client = None
-                self.docker_disabled = True
+except DockerException as e:
+    # Don't show error on Render - it's expected
+    if self.is_render:
+        logger.info("ℹ️ Docker not available on Render - this is expected")
+    else:
+        logger.error(f"❌ Failed to initialize Docker client: {e}")
+    self.client = None
+    self.docker_disabled = True
+except Exception as e:
+    # Don't show error on Render - it's expected
+    if self.is_render:
+        logger.info("ℹ️ Docker not available on Render - this is expected")
+    else:
+        logger.error(f"❌ Unexpected error initializing Docker: {e}")
+    self.client = None
+    self.docker_disabled = True
         else:
             if not DOCKER_AVAILABLE:
                 logger.warning("⚠️ Docker Python package not available")
