@@ -61,7 +61,7 @@ MONGODB_URI = "mongodb+srv://Bosshub:JMaff0WvazwNxKky@cluster0.l0xcoc1.mongodb.n
 LOG_CHANNEL_ID = -1003559364122
 OWNER_ID   = 8525952693
 ADMIN_IDS  = [8055522383]
-VPS_HOST_IP = os.environ.get("VPS_HOST_IP", "YOUR_VPS_IP")
+VPS_HOST_IP = os.environ.get("VPS_HOST_IP", "hosting-bot-gmoo.onrender.com")
 
 bot            = telebot.TeleBot(BOT_TOKEN, parse_mode='HTML')
 db             = Database(MONGODB_URI)              # ✅ KEEP THIS LINE
