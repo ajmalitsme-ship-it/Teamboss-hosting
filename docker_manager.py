@@ -1,4 +1,5 @@
-"""
+
+        """
                       [TeamDev](https://team_x_og)
           
           Project Id -> 28.
@@ -13,14 +14,6 @@
     
           This Script Part Off https://Team_X_Og's Team.
           Copyright ©️ 2026 TeamDev | @Team_X_Og
-          
-    • Some Quick Help
-    - Use In Vps Other Way This Bot Won't Work.
-    - If You Need Any Help Contact Us In @Team_X_Og's Group
-    
-         Compatible In BotApi 9.5 Fully
-         Build For BotApi 9.4
-         We'll Keep Update This Repo If We Got 50+ Stars In One Month Of Release.
 """
 
 import os
@@ -50,9 +43,16 @@ SLEEP_REASON_ABUSE = "resource_abuse"
 
 class DockerManager:
     def __init__(self, database):
+        """
+        Initialize Docker Manager with environment detection
+        
+        Args:
+            database: Database instance for storing project data
+        """
         self.db = database
         self.monitoring_threads = {}
         self.notify_callback = None
+        self.client = None  # Initialize client as None
         
         # Detect environment
         self.is_render = os.environ.get('RENDER', '').lower() == 'true' or \
@@ -63,7 +63,6 @@ class DockerManager:
         self.docker_disabled = os.environ.get('DISABLE_DOCKER', '').lower() == 'true' or self.is_render
         
         # Initialize Docker client if available and not disabled
-        self.client = None  # ✅ This line must be INSIDE __init__ and INDENTED
         if DOCKER_AVAILABLE and not self.docker_disabled:
             try:
                 self.client = docker.from_env()
@@ -71,6 +70,7 @@ class DockerManager:
                 self.client.ping()
                 logger.info("✅ Docker client initialized successfully")
             except DockerException as e:
+                # Don't show error on Render - it's expected
                 if self.is_render:
                     logger.info("ℹ️ Docker not available on Render - this is expected")
                 else:
@@ -78,6 +78,7 @@ class DockerManager:
                 self.client = None
                 self.docker_disabled = True
             except Exception as e:
+                # Don't show error on Render - it's expected
                 if self.is_render:
                     logger.info("ℹ️ Docker not available on Render - this is expected")
                 else:
@@ -91,9 +92,13 @@ class DockerManager:
                 logger.info("🏭 Running on Render - Docker functionality disabled")
             if self.docker_disabled:
                 logger.info("🚫 Docker explicitly disabled via environment variable")
+        
         # Start auto-monitor if Docker is available
         if self.client:
             self._start_auto_monitor()
+
+    # [Rest of your methods remain exactly the same]
+    # ... (keep all your other methods like _notify, _check_docker_available, deploy_project, etc.)
 
     def _notify(self, user_id, message_text):
         """Send notification to user via callback"""
@@ -257,7 +262,7 @@ class DockerManager:
         if not self._check_docker_available("restart_container"):
             return False
         try:
-            container = self.client.containers.get(container_id)
+            container = self.client.contains.get(container_id)
             container.restart(timeout=10)
             logger.info(f"Container {container_id} restarted successfully")
             return True
